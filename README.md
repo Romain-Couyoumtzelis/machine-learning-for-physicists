@@ -20,7 +20,7 @@ Note: This README summarizes the current notebooks and techniques and will be up
     - LASSO loss (L1) for sparse linear regression using a custom objective. See [Lasso regression (scikit-learn)](https://scikit-learn.org/stable/modules/linear_model.html#lasso).
     - Ridge regression (L2) estimator and closed-form solution. See [Ridge regression (scikit-learn)](https://scikit-learn.org/stable/modules/linear_model.html#ridge-regression).
     - Linear classification on a physics dataset with standard preprocessing and accuracy evaluation.
-    - Custom optimization via [scipy.optimize.minimize](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html) for bespoke objectives.
+    - Custom optimization via [scipy.optimize.minimize](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html).
     - Data splits and transforms using [sklearn.model_selection](https://scikit-learn.org/stable/modules/classes.html#module-sklearn.model_selection) and [sklearn.preprocessing](https://scikit-learn.org/stable/modules/preprocessing.html).
 
 - HMW2 — Gaussian Mixture Models and Gibbs sampling
@@ -28,9 +28,19 @@ Note: This README summarizes the current notebooks and techniques and will be up
   - Topics:
     - Gaussian Mixture Models (GMM) as generative models. See [GaussianMixture (scikit-learn)](https://scikit-learn.org/stable/modules/generated/sklearn.mixture.GaussianMixture.html).
     - Bayesian inference via Gibbs sampling to explore the posterior over cluster assignments and parameters. Background: [Gibbs sampling (Wikipedia)](https://en.wikipedia.org/wiki/Gibbs_sampling).
-    - Label-switching resolution using the Hungarian algorithm for post-hoc alignment. See [scipy.optimize.linear_sum_assignment](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.linear_sum_assignment.html).
+    - Label-switching resolution using the Hungarian algorithm ([scipy.optimize.linear_sum_assignment](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.linear_sum_assignment.html)).
     - Practical baselines and comparisons with scikit-learn’s EM-based GMM.
-    - Iterative diagnostics and visualization with `matplotlib` and progress bars via [tqdm](https://tqdm.github.io/).
+    - Iterative diagnostics and visualization with `matplotlib` and [tqdm](https://tqdm.github.io/).
+
+- HMW3 — Quantum state tomography ⚛️
+  - Notebook: [Assignment 3 - Quantum Tomography.ipynb](HMW3%202024/Assignment%203%20-%20Quantum%20Tomography.ipynb)
+  - Data: [target_state_8.txt](HMW3%202024/target_state_8.txt), [target_state_12.txt](HMW3%202024/target_state_12.txt), [target_state_16.txt](HMW3%202024/target_state_16.txt)
+  - Topics:
+    - Quantum state tomography: reconstructing a density matrix ρ from measurement outcomes (Born rule) using neural networks.
+    - Physical constraints in estimation: ρ is positive semidefinite (PSD) and trace-one; enforced via eigenvalue projection and normalization.
+    - Estimation objectives: trained with KL divergence loss, optimized with [PyTorch](https://pytorch.org); includes log-transformation for numerical stability with small probabilities.
+    - Validation metrics: state fidelity, predicted vs. ground truth scatter plots, and histograms for 8, 12, and 16-dimensional systems.
+    - Numerical stability: regularization, dropout, and careful handling of eigen-decompositions for PSD constraints.
 
 ---
 
@@ -41,7 +51,7 @@ Note: This README summarizes the current notebooks and techniques and will be up
 - Custom objective optimization with [scipy.optimize.minimize](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html) for maximum flexibility in loss design
 - GMM clustering via both EM (through [GaussianMixture](https://scikit-learn.org/stable/modules/generated/sklearn.mixture.GaussianMixture.html)) and Bayesian sampling (Gibbs) to compare point estimates vs posterior exploration
 - Label permutation alignment using the Hungarian algorithm ([linear_sum_assignment](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.linear_sum_assignment.html)) to evaluate inferred clusters against ground truth
-- Reproducibility via fixed RNG seeds and explicit data splits; iterative visual diagnostics with `matplotlib` and `tqdm`
+- Quantum tomography with neural networks: KL divergence objectives, log-probability stabilization, PSD projection (eigendecomposition and eigenvalue clipping), and trace normalization
 
 ---
 
@@ -51,9 +61,10 @@ Note: This README summarizes the current notebooks and techniques and will be up
 - [scipy.optimize.linear_sum_assignment](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.linear_sum_assignment.html): resolves label-switching in mixture models for fair evaluation
 - [sklearn.mixture.GaussianMixture](https://scikit-learn.org/stable/modules/generated/sklearn.mixture.GaussianMixture.html): EM-based baseline to contrast with sampling-based inference
 - [tqdm](https://tqdm.github.io/): lightweight progress visualization for iterative sampling/training loops
+- [PyTorch](https://pytorch.org): neural network training and optimization for quantum tomography objectives
 
 Other common dependencies (as seen in imports):
-- [NumPy](https://numpy.org), [pandas](https://pandas.pydata.org), [Matplotlib](https://matplotlib.org), [scikit-learn](https://scikit-learn.org)
+- [NumPy](https://numpy.org), [pandas](https://pandas.pydata.org), [Matplotlib](https://matplotlib.org), [scikit-learn](https://scikit-learn.org), [SciPy](https://scipy.org)
 
 Fonts
 - No custom fonts are referenced.
@@ -73,7 +84,7 @@ Fonts
 Directory notes:
 - HMW1 2024/: Linear models, regularization, and a classification task with evaluation.
 - HMW2 2024/: GMMs, Gibbs sampling, and cluster alignment methodology.
-- HMW3 2024/: Placeholder for the next module; content to be added.
+- HMW3 2024/: Quantum state tomography; includes a notebook and target state files (8, 12, 16) for training and validation across system sizes.
 
 ---
 
