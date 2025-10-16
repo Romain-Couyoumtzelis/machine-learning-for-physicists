@@ -87,5 +87,3 @@ Directory notes:
 - HMW3 2024/: Quantum state tomography; includes a notebook and target state files (8, 12, 16) for training and validation across system sizes.
 
 ---
-
-If you want, we can extend each module with a short local README, standardize plotting/output directories (e.g., results/ or figures/), and pin the environment (requirements.txt or environment.yml). 🔧
